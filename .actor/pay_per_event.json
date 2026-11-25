@@ -1,0 +1,17 @@
+{
+  "actor-start": {
+    "eventTitle": "Actor start",
+    "eventDescription": "One-time initialization charge when the EU E-Commerce Compliance Auditor run starts.",
+    "eventPriceUsd": 0.005
+  },
+  "url-audited": {
+    "eventTitle": "Store compliance audit",
+    "eventDescription": "Per-store HTTP compliance inspection covering EU Directive 2023/2673 Withdrawal Button, abolished EU ODR link check, Directive 2024/825 EmpCo green claims, Omnibus 30-day prior price signals, and B2B outreach hook.",
+    "eventPriceUsd": 0.015
+  },
+  "remediation-pack-generated": {
+    "eventTitle": "Multilingual Art. 11a Withdrawal & Omnibus remediation pack",
+    "eventDescription": "Optional per-store charge when includeRemediationPack is enabled and ready-to-paste multilingual EU Art. 11a 2-step Withdrawal Button HTML/JS + Omnibus snippet is generated.",
+    "eventPriceUsd": 0.01
+  }
+}

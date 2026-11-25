@@ -1,0 +1,19 @@
+{
+  "actorSpecification": 1,
+  "name": "eu-withdrawal-omnibus-auditor",
+  "title": "EU Withdrawal Button, EmpCo & Omnibus Store Auditor (MCP)",
+  "description": "Bulk-audit online stores via fast zero-browser HTTP for the mandatory EU Electronic Withdrawal Button (Directive 2023/2673 Art. 11a / BGB § 356a), abolished EU ODR link traps, EmpCo Directive 2024/825 green claims, and Omnibus 30-day prior price disclosures — with multilingual HTML/JS remediation & B2B outreach hooks.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "minMemoryMbytes": 256,
+  "maxMemoryMbytes": 1024,
+  "usesStandbyMode": true,
+  "webServerMcpPath": "/mcp",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md",
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

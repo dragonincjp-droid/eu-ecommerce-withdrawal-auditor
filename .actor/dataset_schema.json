@@ -1,0 +1,267 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "type": "object",
+    "required": [
+      "url",
+      "domain",
+      "auditedAt",
+      "status",
+      "complianceScore",
+      "riskTier",
+      "disclaimer"
+    ],
+    "properties": {
+      "url": {
+        "type": "string",
+        "description": "Original input URL or bare domain requested for auditing."
+      },
+      "normalizedInputUrl": {
+        "type": "string",
+        "description": "Normalized HTTP/HTTPS URL derived from input."
+      },
+      "finalUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Resolved homepage URL after validated HTTP redirects."
+      },
+      "domain": {
+        "type": "string",
+        "description": "Target store hostname."
+      },
+      "auditedAt": {
+        "type": "string",
+        "description": "ISO 8601 UTC audit timestamp."
+      },
+      "status": {
+        "type": "string",
+        "description": "Audit execution status (audited, blocked_ssrf, blocked_robots, error)."
+      },
+      "httpStatus": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Homepage HTTP response status code."
+      },
+      "pageTitle": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "HTML document <title> of the store homepage."
+      },
+      "detectedLanguage": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Detected store language code (e.g. de, en, fr, es, it, nl, pl)."
+      },
+      "ecommercePlatform": {
+        "type": "string",
+        "description": "Detected e-commerce platform (shopify, woocommerce, shopware, prestashop, magento, bigcommerce, wix, squarespace, custom)."
+      },
+      "loadTimeMs": {
+        "type": "number",
+        "description": "Total store audit duration in milliseconds."
+      },
+      "pagesFetchedCount": {
+        "type": "integer",
+        "description": "Total HTTP pages fetched for this store (homepage + internal legal/subpages)."
+      },
+      "pagesFetched": {
+        "type": "array",
+        "description": "URLs of all pages inspected on this store."
+      },
+      "errorMessage": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Diagnostic error or security block reason when status is not audited."
+      },
+      "complianceScore": {
+        "type": "number",
+        "description": "Deterministic 0-100 EU e-commerce technical compliance score (100 = no heuristic issues detected)."
+      },
+      "riskTier": {
+        "type": "string",
+        "description": "Heuristic compliance risk tier: CRITICAL, HIGH, MODERATE, or LOW."
+      },
+      "withdrawalStatus": {
+        "type": "string",
+        "description": "EU Art. 11a electronic withdrawal classification (compliant_2step, partial_single_step, login_walled, static_policy_or_pdf_only, missing, not_checked)."
+      },
+      "withdrawalButtonFound": {
+        "type": "boolean",
+        "description": "Whether an interactive electronic withdrawal button/link was detected."
+      },
+      "withdrawalTwoStepCompliant": {
+        "type": "boolean",
+        "description": "Whether a guest-accessible 2-step interactive withdrawal + confirmation flow was detected."
+      },
+      "withdrawalLoginWallDetected": {
+        "type": "boolean",
+        "description": "Whether the withdrawal link redirects to or requires account login (/account/login, /wp-login.php, etc.)."
+      },
+      "withdrawalButtonCheck": {
+        "type": "object",
+        "description": "Detailed Directive (EU) 2023/2673 Art. 11a / BGB § 356a withdrawal button analysis."
+      },
+      "abolishedOdrLinkFound": {
+        "type": "boolean",
+        "description": "Whether an outdated link to the abolished EU ODR platform (ec.europa.eu/consumers/odr) was detected."
+      },
+      "odrLinkCheck": {
+        "type": "object",
+        "description": "Detailed Regulation (EU) 2024/3228 abolished EU ODR link check."
+      },
+      "unsubstantiatedGreenClaimsFound": {
+        "type": "boolean",
+        "description": "Whether generic environmental claims were detected without recognized third-party certification signals."
+      },
+      "empCoGreenClaimsCheck": {
+        "type": "object",
+        "description": "Detailed Directive (EU) 2024/825 EmpCo environmental claims & certification evidence check."
+      },
+      "omnibusViolationFound": {
+        "type": "boolean",
+        "description": "Whether discount/strike-through pricing was detected without 30-day lowest prior price wording."
+      },
+      "omnibusPricingCheck": {
+        "type": "object",
+        "description": "Detailed Directive (EU) 2019/2161 Art. 6a Omnibus 30-day reference price check."
+      },
+      "impressumUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Discovered Impressum / Legal Notice URL."
+      },
+      "withdrawalPolicyUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Discovered Withdrawal / Cancellation / Returns URL."
+      },
+      "termsUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Discovered Terms & Conditions / AGB URL."
+      },
+      "privacyUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Discovered Privacy Policy / Datenschutz URL."
+      },
+      "legalLinks": {
+        "type": "object",
+        "description": "Structured legal page URLs discovered on the store."
+      },
+      "findingsCount": {
+        "type": "integer",
+        "description": "Total number of compliance findings flagged."
+      },
+      "findings": {
+        "type": "array",
+        "description": "Prioritized technical compliance findings with ruleId, regulation, severity, evidence, and recommendation."
+      },
+      "coldOutreachHook": {
+        "type": "string",
+        "description": "Neutral, factual 1-2 sentence B2B outreach observation ready for Clay, n8n, Smartlead, or Instantly."
+      },
+      "remediationPackGenerated": {
+        "type": "boolean",
+        "description": "Whether a multilingual Art. 11a HTML/JS widget + Omnibus remediation pack was generated."
+      },
+      "remediationPack": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Copy-pasteable multilingual 2-step Art. 11a Electronic Withdrawal Widget (HTML/JS) + Omnibus 30-day snippet."
+      },
+      "recommendedNextActors": {
+        "type": "array",
+        "description": "Recommended follow-up Apify Actors (e.g. WCAG 2.2 / EAA & Overlay Visual Screenshot Auditor)."
+      },
+      "disclaimer": {
+        "type": "string",
+        "description": "Mandatory technical heuristic & non-legal-advice disclaimer."
+      }
+    }
+  },
+  "views": {
+    "overview": {
+      "title": "EU Store Compliance & Lead Enrichment Overview",
+      "transformation": {
+        "fields": [
+          "url",
+          "ecommercePlatform",
+          "complianceScore",
+          "riskTier",
+          "withdrawalStatus",
+          "abolishedOdrLinkFound",
+          "unsubstantiatedGreenClaimsFound",
+          "omnibusViolationFound",
+          "coldOutreachHook",
+          "status"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "url": {
+            "label": "Store URL",
+            "format": "link"
+          },
+          "ecommercePlatform": {
+            "label": "Platform",
+            "format": "text"
+          },
+          "complianceScore": {
+            "label": "Compliance Score (0-100)",
+            "format": "number"
+          },
+          "riskTier": {
+            "label": "Risk Tier",
+            "format": "text"
+          },
+          "withdrawalStatus": {
+            "label": "Art. 11a Withdrawal",
+            "format": "text"
+          },
+          "abolishedOdrLinkFound": {
+            "label": "Dead ODR Link",
+            "format": "boolean"
+          },
+          "unsubstantiatedGreenClaimsFound": {
+            "label": "EmpCo Green Risk",
+            "format": "boolean"
+          },
+          "omnibusViolationFound": {
+            "label": "Omnibus 30d Gap",
+            "format": "boolean"
+          },
+          "coldOutreachHook": {
+            "label": "Cold Outreach Hook",
+            "format": "text"
+          },
+          "status": {
+            "label": "Status",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
+}

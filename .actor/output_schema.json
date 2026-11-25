@@ -1,0 +1,13 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "EU Withdrawal Button, EmpCo & Omnibus Store Compliance Audit Output",
+  "description": "Structured per-store EU e-commerce compliance signals, cold outreach hooks, and multilingual Art. 11a / Omnibus HTML/JS remediation snippets stored in the default Dataset.",
+  "properties": {
+    "auditResults": {
+      "type": "string",
+      "title": "Store Compliance Audit Dataset",
+      "description": "Per-store complianceScore, riskTier, Withdrawal Button check, abolished ODR link detection, EmpCo green claims, Omnibus 30-day pricing signals, coldOutreachHook, and remediationPack.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    }
+  }
+}

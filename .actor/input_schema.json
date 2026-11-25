@@ -1,0 +1,122 @@
+{
+  "title": "EU Withdrawal Button, EmpCo & Omnibus Store Auditor Input",
+  "description": "Audit e-commerce stores via fast zero-browser HTTP for the mandatory EU Electronic Withdrawal Button (Directive 2023/2673 Art. 11a / BGB § 356a), abolished EU ODR platform links, EmpCo Directive 2024/825 greenwashing claims, and Omnibus 30-day lowest price rules.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "urls": {
+      "title": "Target Store URLs or Bare Domains",
+      "type": "array",
+      "description": "List of store URLs or bare domains to audit (supports full URLs like \"https://shop.example.de\", bare domains like \"shop.example.de\", or RequestList objects like [{\"url\": \"https://shop.example.de\"}]).",
+      "editor": "stringList",
+      "prefill": [
+        "https://example.com"
+      ]
+    },
+    "url": {
+      "title": "Single Store URL or Domain (Optional Shorthand)",
+      "type": "string",
+      "description": "Optional single store URL or bare domain convenience field for REST webhooks, Clay HTTP columns, or MCP calls.",
+      "editor": "textfield"
+    },
+    "datasetId": {
+      "title": "Upstream Apify Dataset ID (Optional Chaining)",
+      "type": "string",
+      "description": "Optional Apify Dataset ID (e.g. from Google Maps Scraper or E-Commerce Lead Extractor) to automatically import store URLs and deduplicate with urls.",
+      "editor": "textfield"
+    },
+    "datasetUrlField": {
+      "title": "Dataset URL Field Override (Optional)",
+      "type": "string",
+      "description": "Optional column name to extract store URLs from datasetId items. When omitted, auto-detects website, url, domain, shopUrl, or storeUrl.",
+      "editor": "textfield"
+    },
+    "maxLegalPagesPerDomain": {
+      "title": "Max Internal Legal/Subpages per Store",
+      "type": "integer",
+      "description": "Maximum number of discovered same-origin internal pages (Withdrawal, Impressum, AGB/Terms, Returns, Product/Sale) fetched per store in addition to the homepage (0-5).",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 5,
+      "editor": "number"
+    },
+    "includeRemediationPack": {
+      "title": "Generate Multilingual HTML/JS Remediation Pack",
+      "type": "boolean",
+      "description": "Generates a ready-to-paste multilingual 2-step EU Art. 11a Electronic Withdrawal Widget (HTML/JS) + Omnibus 30-day lowest price snippet when compliance gaps are detected (+$0.01/store).",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "checkWithdrawalButton": {
+      "title": "Check EU Art. 11a Electronic Withdrawal Button",
+      "type": "boolean",
+      "description": "Checks for interactive 2-step electronic contract withdrawal flows across EN/DE/FR/ES/IT/NL/PL vs. static PDFs or guest-hostile login walls (Directive (EU) 2023/2673 Art. 11a / BGB § 356a).",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "checkAbolishedOdrLink": {
+      "title": "Check Abolished EU ODR Link Trap",
+      "type": "boolean",
+      "description": "Scans homepage, Impressum, and Terms/AGB pages for outdated links to ec.europa.eu/consumers/odr (permanently shut down July 20, 2025 under Regulation (EU) 2024/3228).",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "checkEmpCoGreenClaims": {
+      "title": "Check EU EmpCo Greenwashing Claims",
+      "type": "boolean",
+      "description": "Detects generic environmental claims (eco-friendly, climate neutral, klimaneutral, éco-responsable, etc.) and checks for recognized third-party certifications (EU Ecolabel, Blauer Engel, GOTS, OEKO-TEX, FSC, B Corp) under Directive (EU) 2024/825.",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "checkOmnibusPricing": {
+      "title": "Check EU Omnibus 30-Day Lowest Price",
+      "type": "boolean",
+      "description": "Detects strike-through/compare-at discount indicators and checks whether 30-day lowest prior price wording is disclosed alongside discounts (Directive (EU) 2019/2161 Art. 6a).",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "respectRobotsTxt": {
+      "title": "Respect robots.txt",
+      "type": "boolean",
+      "description": "Checks domain /robots.txt rules before scanning and skips disallowed paths.",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "maxUrls": {
+      "title": "Max Stores Safety Cap",
+      "type": "integer",
+      "description": "Hard ceiling on the total number of stores audited in a single run to prevent accidental budget overruns.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 5000,
+      "editor": "number"
+    },
+    "maxConcurrency": {
+      "title": "Max Concurrent Store Workers",
+      "type": "integer",
+      "description": "Maximum parallel HTTP store workers (1-20).",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 20,
+      "editor": "number"
+    },
+    "domainDelayMs": {
+      "title": "Per-Domain Polite Delay (ms)",
+      "type": "integer",
+      "description": "Minimum polite delay in milliseconds between consecutive HTTP requests to the same hostname.",
+      "default": 300,
+      "minimum": 0,
+      "maximum": 30000,
+      "editor": "number"
+    },
+    "requestTimeoutMs": {
+      "title": "HTTP Request Timeout (ms)",
+      "type": "integer",
+      "description": "Strict timeout per HTTP request in milliseconds (default 12000ms).",
+      "default": 12000,
+      "minimum": 2000,
+      "maximum": 60000,
+      "editor": "number"
+    }
+  }
+}

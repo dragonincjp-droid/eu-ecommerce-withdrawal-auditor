@@ -1,0 +1,22 @@
+{
+  "apifyHostedMcpGateway": {
+    "mcpServers": {
+      "eu-withdrawal-omnibus-auditor": {
+        "url": "https://mcp.apify.com/?tools=healthy_addax/eu-withdrawal-omnibus-auditor",
+        "headers": {
+          "Authorization": "Bearer <YOUR_APIFY_TOKEN>"
+        }
+      }
+    }
+  },
+  "combinedComplianceSuiteMcp": {
+    "mcpServers": {
+      "eu-compliance-and-wcag-suite": {
+        "url": "https://mcp.apify.com/?tools=healthy_addax/eu-withdrawal-omnibus-auditor,healthy_addax/wcag-eaa-ada-auditor",
+        "headers": {
+          "Authorization": "Bearer <YOUR_APIFY_TOKEN>"
+        }
+      }
+    }
+  }
+}
